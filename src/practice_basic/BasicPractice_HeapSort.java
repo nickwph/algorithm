@@ -1,72 +1,53 @@
 package practice_basic;
 
+import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 /* Class HeapSort */
 public class BasicPractice_HeapSort {
 
-    private static int N;
 
-    /* Sort Function */
-    public static void sort(int arr[]) {
-        heapify(arr);
-        for (int i = N; i > 0; i--) {
+    private static void swap(int[] arr, int a, int b) {
+        int tmp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = tmp;
+    }
+
+    private static void heapify(int[] arr, int i, int total) {
+        int lft = i * 2;
+        int rgt = lft + 1;
+        int grt = i;
+
+        if (lft <= total && arr[lft] > arr[grt]) grt = lft;
+        if (rgt <= total && arr[rgt] > arr[grt]) grt = rgt;
+        if (grt != i) {
+            swap(arr, i, grt);
+            heapify(arr, grt, total);
+        }
+    }
+
+    public static void sort(int[] arr) {
+        int total = arr.length - 1;
+        for (int i = total / 2; i >= 0; i--) {
+            heapify(arr, i, total);
+        }
+        for (int i = total; i > 0; i--) {
             swap(arr, 0, i);
-            N = N - 1;
-            maxheap(arr, 0);
+            total--;
+            heapify(arr, 0, total);
         }
     }
 
-    /* Function to build a heap */
-    public static void heapify(int arr[]) {
-        N = arr.length - 1;
-        for (int i = N / 2; i >= 0; i--)
-            maxheap(arr, i);
-    }
-
-    /* Function to swap largest element in heap */
-    public static void maxheap(int arr[], int i) {
-        int left = 2 * i;
-        int right = 2 * i + 1;
-        int max = i;
-        if (left <= N && arr[left] > arr[i])
-            max = left;
-        if (right <= N && arr[right] > arr[max])
-            max = right;
-
-        if (max != i) {
-            swap(arr, i, max);
-            maxheap(arr, max);
-        }
-    }
-
-    /* Function to swap two numbers in an array */
-    public static void swap(int arr[], int i, int j) {
-        int tmp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = tmp;
-    }
-
-    /* Main method */
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Heap Sort Test\n");
-        int n, i;    
-        /* Accept number of elements */
-        System.out.println("Enter number of integer elements");
-        n = scan.nextInt();    
-        /* Make array of n elements */
-        int arr[] = new int[n];
-        /* Accept elements */
-        System.out.println("\nEnter " + n + " integer elements");
-        for (i = 0; i < n; i++)
-            arr[i] = scan.nextInt();
-        /* Call method sort */
-        sort(arr);
-        /* Print sorted Array */
-        System.out.println("\nElements after sorting ");
-        for (i = 0; i < n; i++)
-            System.out.print(arr[i] + " ");
-        System.out.println();
+        // generate array with random values
+        int[] array = new int[20];
+        for (int i = 0; i < array.length; i++) array[i] = new Random().nextInt(array.length);
+        System.out.print("Original Array: ");
+        System.out.println(Arrays.toString(array));
+        // sort array with heapsort
+        sort(array);
+        System.out.print("Sorted Array:   ");
+        System.out.println(Arrays.toString(array));
     }
 }
