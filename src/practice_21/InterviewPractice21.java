@@ -1,3 +1,5 @@
+package practice_21;
+
 import java.util.Stack;
 
 public class InterviewPractice21
