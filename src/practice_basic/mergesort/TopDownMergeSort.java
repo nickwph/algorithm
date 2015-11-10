@@ -5,6 +5,10 @@ import java.util.Random;
 
 /**
  * Created by nickwph on 11/10/15.
+ *
+ * O(nlg n)
+ * http://algs4.cs.princeton.edu/22mergesort/images/mergesortTD.png
+ * http://algs4.cs.princeton.edu/22mergesort/images/mergesortBU.png
  */
 public class TopDownMergeSort {
 
