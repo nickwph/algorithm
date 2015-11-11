@@ -8,7 +8,7 @@ import static utility.ArrayUtils.format;
  */
 public class InsertionSort {
 
-    static void sort(int[] array) {
+    public static void sort(int[] array) {
         int j;
         int temp;
         // for each values in the array
