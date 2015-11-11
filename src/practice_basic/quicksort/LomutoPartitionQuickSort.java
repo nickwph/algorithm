@@ -35,7 +35,7 @@ public class LomutoPartitionQuickSort {
         if (lo < hi) {
             // find pivot
             int p = lomutoPartition(array, lo, hi);
-            // divide and sort recursively, excluding P
+            // divide and sort recursively, excluding pivot point
             // time: O(lg n) or worst O(n)
             sort(array, lo, p - 1);
             sort(array, p + 1, hi);

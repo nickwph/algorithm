@@ -37,9 +37,9 @@ public class HoarePartitionQuickSort {
         if (lo < hi) {
             // find pivot, divide and sort recursively
             // time: O(lg n) or worst O(n)
-            int mi = hoarePartition(array, lo, hi);
-            sort(array, lo, mi);
-            sort(array, mi + 1, hi);
+            int p = hoarePartition(array, lo, hi);
+            sort(array, lo, p);
+            sort(array, p + 1, hi);
         }
     }
 
