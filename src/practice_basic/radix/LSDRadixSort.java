@@ -2,6 +2,8 @@ package practice_basic.radix;
 
 import java.util.Arrays;
 
+import static java.lang.System.arraycopy;
+import static java.util.Arrays.fill;
 import static utility.ArrayUtils.createRandomArray;
 import static utility.ArrayUtils.findMax;
 import static utility.ArrayUtils.format;
@@ -11,10 +13,11 @@ import static utility.ArrayUtils.format;
  * <p/>
  * Time: O(kn)
  */
-public class RadixSort {
+public class LSDRadixSort {
 
     public static void sort(int[] array) {
         // counting sort for each digit bucket
+        // from right to left
         // time: ?
         int max = findMax(array);
         for (int exp = 1; max / exp > 0; exp *= 10) {
@@ -27,28 +30,28 @@ public class RadixSort {
     static void countingSortAtExp(int[] array, int exp) {
         // time: O(n)
         int k = 10;
-        int[] count = new int[k];
-        Arrays.fill(count, 0);
+        int[] counter = new int[k];
+        fill(counter, 0);
 
         // time: O(n)
         for (int item : array) {
             int key = (item / exp) % 10;
-            count[key]++;
+            counter[key]++;
         }
 
         // time: O(n)
-        for (int i = 1; i < k; i++) count[i] += count[i - 1];
+        for (int i = 1; i < k; i++) counter[i] += counter[i - 1];
 
         // time: O(n)
         int[] output = new int[array.length];
         for (int item : array) {
             int key = (item / exp) % 10;
-            count[key]--;
-            output[count[key]] = item;
+            counter[key]--;
+            output[counter[key]] = item;
         }
 
         // time: O(n)
-        System.arraycopy(output, 0, array, 0, output.length);
+        arraycopy(output, 0, array, 0, output.length);
     }
 
     public static void main(String[] args) {
