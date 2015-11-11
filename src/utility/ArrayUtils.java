@@ -15,8 +15,12 @@ public class ArrayUtils {
     }
 
     public static int[] createRandomArray(int size) {
-        int[] array = new int[20];
-        for (int i = 0; i < array.length; i++) array[i] = new Random().nextInt(array.length);
+        return createRandomArray(size, size);
+    }
+
+    public static int[] createRandomArray(int size, int range) {
+        int[] array = new int[size];
+        for (int i = 0; i < array.length; i++) array[i] = new Random().nextInt(range);
         return array;
     }
 
@@ -28,5 +32,13 @@ public class ArrayUtils {
 
     public static String format(int[] array) {
         return Arrays.toString(array);
+    }
+
+    // find the max value in array
+    // time: O(n)
+    public static int findMax(int[] array) {
+        int max = -1;
+        for (int item : array) if (item > max) max = item;
+        return max;
     }
 }
