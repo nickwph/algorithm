@@ -1,5 +1,6 @@
 package practice_basic.quicksort;
 
+import static java.lang.System.out;
 import static utility.ArrayUtils.*;
 
 /**
@@ -42,30 +43,32 @@ public class LomutoPartitionQuickSort {
         }
     }
 
-    static int lomutoPartition(int[] array, int lo, int hi) {
-        int pivot = array[hi];
-        int i = lo;
+    static int lomutoPartition(int[] arr, int low, int hgh) {
+
         // group smaller values together
         // and group larger values together
         // [2, 1, 3], [6, 5, 7], [p=4]
         // time: O(n)
-        for (int j = lo; j < hi; j++) {
-            if (array[j] <= pivot) {
-                swap(array, i, j);
+        int i = low;
+        int pivot = arr[hgh];
+        for (int j = low; j < hgh; j++) {
+            if (arr[j] <= pivot) {
+                swap(arr, i, j);
                 i++;
             }
         }
         // place pivot after smaller values
         // and before larger values
         // [2, 1, 3], [p=4], [6, 5, 7]
-        swap(array, i, hi);
+        swap(arr, i, hgh);
         return i;
     }
 
     public static void main(String[] args) {
-        int[] array = createRandomArray(20);
-        System.out.println("Original: " + format(array));
+        int[] array = createRandomArray(10, 1000);
+        out.println("Original: " + format(array));
         sort(array);
-        System.out.println("Sorted:   " + format(array));
+        out.println("Sorted:   " + format(array));
+        out.println("IsSorted: " + isSorted(array));
     }
 }
