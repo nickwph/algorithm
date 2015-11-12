@@ -45,19 +45,19 @@ public class HoarePartitionQuickSort {
 
     static int hoarePartition(int[] array, int lo, int hi) {
         // get the value to compare with
-        int pivot = array[lo];
-        int left = lo - 1;
-        int right = hi + 1;
+        int pivot = array[hi - 1];
+        int lft = lo - 1;
+        int rgt = hi + 1;
         while (true) {
             // find index from left with larger value
             // find index from right with smaller value
             // time: O(n)
-            do left++; while (array[left] < pivot);
-            do right--; while (array[right] > pivot);
+            while (array[++lft] < pivot) ;
+            while (array[--rgt] > pivot) ;
             // swap them if index is not inverted
             // otherwise pivot is found
-            if (left < right) swap(array, left, right);
-            else return right;
+            if (lft < rgt) swap(array, lft, rgt);
+            else return rgt;
         }
     }
 

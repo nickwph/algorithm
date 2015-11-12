@@ -1,6 +1,8 @@
 package utility;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -12,6 +14,13 @@ public class ArrayUtils {
         int temp = array[a];
         array[a] = array[b];
         array[b] = temp;
+    }
+
+    public static String[] createRandomStringArray(int size) {
+        String[] alphabets = {"adssdaf", "adsf", "eqwr", "adsf", "teqw", "sdfg", "rerew", "sgsdfg", "qewrsad", "sdgas"};
+        List<String> list = Arrays.asList(alphabets);
+        Collections.shuffle(list);
+        return list.toArray(new String[list.size()]);
     }
 
     public static int[] createRandomArray(int size) {
@@ -34,11 +43,37 @@ public class ArrayUtils {
         return Arrays.toString(array);
     }
 
+    public static String format(int[] array, int lo, int hi) {
+        int length = hi - lo + 1;
+        if (length > 0) {
+            int[] newArray = new int[length];
+            System.arraycopy(array, lo, newArray, 0, length);
+            return Arrays.toString(newArray);
+        }
+        return "[]";
+    }
+
     // find the max value in array
     // time: O(n)
     public static int findMax(int[] array) {
         int max = -1;
         for (int item : array) if (item > max) max = item;
         return max;
+    }
+
+    // is the array sorted
+    public static boolean isSorted(String[] a) {
+        for (int i = 1; i < a.length; i++) {
+            if (a[i].compareTo(a[i - 1]) < 0) return false;
+        }
+        return true;
+    }
+
+    // is the array sorted
+    public static boolean isSorted(int[] a) {
+        for (int i = 1; i < a.length; i++) {
+            if (a[i] < a[i - 1]) return false;
+        }
+        return true;
     }
 }

@@ -18,7 +18,7 @@ public class LSDRadixSort {
     public static void sort(int[] array) {
         // counting sort for each digit bucket
         // from right to left
-        // time: ?
+        // time: O(kn)
         int max = findMax(array);
         for (int exp = 1; max / exp > 0; exp *= 10) {
             countingSortAtExp(array, exp);
