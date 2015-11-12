@@ -14,48 +14,45 @@ public class ThreeWayRadixQuickSort {
     public static void sort(int[] a) {
         int max = findMax(a);
         int exp = getNumberOfDigits(max);
-//        System.out.println(max + "->" + exp);
-        sort(a, 0, a.length - 1, exp);
+        sort(a, 0, a.length - 1, exp - 1);
     }
 
-    // 3-way string quicksort a[lo..hi] starting at dth character
-    private static void sort(int[] a, int lo, int hi, int d) {
+    private static void sort(int[] arr, int low, int hgh, int dgt) {
+        if (hgh <= low || dgt < 0) return;
 
-        // cutoff to insertion sort for small subarrays
-        if (hi <= lo || d < 0) {
-            return;
-        }
+        // pivot as arr[0]
+        // two pointers from left and right
+        int lft = low;
+        int rgt = hgh;
+        int pvt = getDigitAtPlace(arr[low], dgt);
 
-        int lt = lo, gt = hi;
-        int v = getDigitAtPlace(a[lo], d);
-
-        int i = lo + 1;
-        while (i <= gt) {
-            int t = getDigitAtPlace(a[i], d);
-            if (t < v) swap(a, lt++, i++);
-            else if (t > v) swap(a, i, gt--);
+        // compare from i=1..n
+        // if item is smaller, swap it with left pointer
+        // else if item is larger, swap it with right pointer
+        // else increase i
+        // -> [22,11,41],[35,33,36],[55,86,57]
+        int i = low + 1;
+        while (i <= rgt) {
+            int t = getDigitAtPlace(arr[i], dgt);
+            if (t < pvt) swap(arr, lft++, i++);
+            else if (t > pvt) swap(arr, i, rgt--);
             else i++;
         }
 
-        // a[lo..lt-1] < v = a[lt..gt] < a[gt+1..hi].
-        sort(a, lo, lt - 1, d);
-        if (v >= 0) sort(a, lt, gt, d - 1);
-        sort(a, gt + 1, hi, d);
+        // recursively sort in three ways
+        // [22,11,41] -> run with the same method
+        // [35,33,36] -> sort the next digit
+        // [55,86,57] -> run with the same method
+        sort(arr, low, lft - 1, dgt);
+        if (pvt >= 0) sort(arr, lft, rgt, dgt - 1);
+        sort(arr, rgt + 1, hgh, dgt);
     }
 
-    /**
-     * Reads in a sequence of fixed-length strings from standard input;
-     * 3-way radix quicksorts them;
-     * and prints them to standard output in ascending order.
-     */
     public static void main(String[] args) {
-        for (int i = 0; i < 20; i++) {
-            int[] array = createRandomArray(10, 1000);
-            System.out.println("Original: " + format(array));
-            sort(array);
-            System.out.println("Sorted:   " + format(array));
-            System.out.println("IsSorted: " + isSorted(array));
-            System.out.println();
-        }
+        int[] array = createRandomArray(10, 1000);
+        System.out.println("Original: " + format(array));
+        sort(array);
+        System.out.println("Sorted:   " + format(array));
+        System.out.println("IsSorted: " + isSorted(array));
     }
 }
