@@ -1,6 +1,4 @@
-package practice_basic.radix;
-
-import java.util.Arrays;
+package practice_basic.sort.radix;
 
 import static java.lang.System.arraycopy;
 import static java.util.Arrays.fill;

@@ -1,4 +1,4 @@
-package practice_basic.insertion;
+package practice_basic.sort.insertion;
 
 import static utility.ArrayUtils.createRandomArray;
 import static utility.ArrayUtils.format;

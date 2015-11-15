@@ -1,4 +1,4 @@
-package practice_basic.merge;
+package practice_basic.sort.merge;
 
 import java.util.Arrays;
 import java.util.Random;

@@ -1,6 +1,4 @@
-package practice_basic.quicksort;
-
-import java.util.Arrays;
+package practice_basic.sort.quicksort;
 
 import static utility.ArrayUtils.*;
 import static utility.MathUtils.getDigitAtPlace;

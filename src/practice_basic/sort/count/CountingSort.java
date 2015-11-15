@@ -1,4 +1,4 @@
-package practice_basic.count;
+package practice_basic.sort.count;
 
 import java.util.Arrays;
 

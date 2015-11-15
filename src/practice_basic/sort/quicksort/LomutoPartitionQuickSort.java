@@ -1,4 +1,4 @@
-package practice_basic.quicksort;
+package practice_basic.sort.quicksort;
 
 import static java.lang.System.out;
 import static utility.ArrayUtils.*;

@@ -1,8 +1,7 @@
-package practice_basic.hash;
+package practice_basic.sort.hash;
 
 import java.util.Arrays;
 import java.util.Random;
-import java.util.Scanner;
 
 import static utility.ArrayUtils.swap;
 

@@ -1,6 +1,6 @@
-package practice_basic.bucket;
+package practice_basic.sort.bucket;
 
-import practice_basic.insertion.InsertionSort;
+import practice_basic.sort.insertion.InsertionSort;
 
 import static java.lang.System.arraycopy;
 import static utility.ArrayUtils.createRandomArray;
