@@ -39,6 +39,12 @@ public class ArrayUtils {
         return array;
     }
 
+    public static int[] createArray(int size) {
+        int[] array = new int[20];
+        for (int i = 0; i < array.length; i++) array[i] = i;
+        return array;
+    }
+
     public static String format(int[] array) {
         return Arrays.toString(array);
     }
