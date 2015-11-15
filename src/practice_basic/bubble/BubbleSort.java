@@ -1,4 +1,4 @@
-package practice_basic.bubblesort;
+package practice_basic.bubble;
 
 import static utility.ArrayUtils.createRandomArray;
 import static utility.ArrayUtils.format;

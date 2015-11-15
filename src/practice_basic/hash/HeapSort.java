@@ -1,20 +1,27 @@
-package practice_basic;
+package practice_basic.hash;
 
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
+import static utility.ArrayUtils.swap;
+
 /* Class HeapSort */
-public class BasicPractice_HeapSort {
+public class HeapSort {
 
-
-    private static void swap(int[] arr, int a, int b) {
-        int tmp = arr[a];
-        arr[a] = arr[b];
-        arr[b] = tmp;
+    static void sort(int[] arr) {
+        int total = arr.length - 1;
+        for (int i = total / 2; i >= 0; i--) {
+            heapify(arr, i, total);
+        }
+        for (int i = total; i > 0; i--) {
+            swap(arr, 0, i);
+            total--;
+            heapify(arr, 0, total);
+        }
     }
 
-    private static void heapify(int[] arr, int i, int total) {
+    static void heapify(int[] arr, int i, int total) {
         int lft = i * 2;
         int rgt = lft + 1;
         int grt = i;
@@ -24,18 +31,6 @@ public class BasicPractice_HeapSort {
         if (grt != i) {
             swap(arr, i, grt);
             heapify(arr, grt, total);
-        }
-    }
-
-    public static void sort(int[] arr) {
-        int total = arr.length - 1;
-        for (int i = total / 2; i >= 0; i--) {
-            heapify(arr, i, total);
-        }
-        for (int i = total; i > 0; i--) {
-            swap(arr, 0, i);
-            total--;
-            heapify(arr, 0, total);
         }
     }
 
