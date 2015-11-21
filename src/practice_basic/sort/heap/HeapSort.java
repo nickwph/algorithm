@@ -1,4 +1,4 @@
-package practice_basic.sort.hash;
+package practice_basic.sort.heap;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -10,9 +10,13 @@ public class HeapSort {
 
     static void sort(int[] arr) {
         int total = arr.length - 1;
+        // heapify at each parent
         for (int i = total / 2; i >= 0; i--) {
             heapify(arr, i, total);
         }
+        // place max to the end and re-heapify the rest
+        // reduce total value and repeat until
+        // all items are sorted
         for (int i = total; i > 0; i--) {
             swap(arr, 0, i);
             total--;
@@ -20,6 +24,9 @@ public class HeapSort {
         }
     }
 
+    // iParent     = floor((i-1) / 2)
+    // iLeftChild  = 2*i + 1
+    // iRightChild = 2*i + 2
     static void heapify(int[] arr, int i, int total) {
         int lft = i * 2;
         int rgt = lft + 1;
