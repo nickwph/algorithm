@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.com/nickwph/algorithm.svg?token=xsSvxvcw97jR5DvGurRG&branch=master)](https://travis-ci.com/nickwph/algorithm)
