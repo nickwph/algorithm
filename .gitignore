@@ -1,5 +1,7 @@
 .idea/tasks.xml
 .idea/workspace.xml
+.gradle/
 
 bin/
 out/
+build/

@@ -1,8 +1,9 @@
 package practice_basic.sort.count;
 
 import org.junit.Test;
-import utility.AssertUtils;
+import utility.ArrayUtils;
 
+import static org.junit.Assert.assertTrue;
 import static utility.ArrayUtils.createRandomArray;
 import static utility.ArrayUtils.format;
 
@@ -18,6 +19,6 @@ public class CountingSortTest {
         System.out.println("Original: " + format(array));
         CountingSort.sort(array);
         System.out.println("Sorted:   " + format(array));
-        AssertUtils.assertSorted(array);
+        assertTrue(ArrayUtils.isSorted(array));
     }
 }

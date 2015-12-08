@@ -1,8 +1,9 @@
 package practice_basic.sort.radix;
 
 import org.junit.Test;
-import utility.AssertUtils;
+import utility.ArrayUtils;
 
+import static org.junit.Assert.assertTrue;
 import static utility.ArrayUtils.createRandomArray;
 import static utility.ArrayUtils.format;
 
@@ -18,7 +19,7 @@ public class RadixSortTest {
         System.out.println("Original: " + format(array));
         MSDRadixSort.sort(array);
         System.out.println("Sorted:   " + format(array));
-        AssertUtils.assertSorted(array);
+        assertTrue(ArrayUtils.isSorted(array));
     }
 
     @Test
@@ -27,6 +28,6 @@ public class RadixSortTest {
         System.out.println("Original: " + format(array));
         LSDRadixSort.sort(array);
         System.out.println("Sorted:   " + format(array));
-        AssertUtils.assertSorted(array);
+        assertTrue(ArrayUtils.isSorted(array));
     }
 }
