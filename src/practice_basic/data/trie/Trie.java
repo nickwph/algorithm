@@ -32,12 +32,6 @@ public class Trie {
         return node != null && node.isLeaf;
     }
 
-    private static class Node {
-        char character;
-        boolean isLeaf;
-        HashMap<Character, Node> children = new HashMap<>();
-    }
-
     private Node get(String word) {
         Map<Character, Node> children = root.children;
         Node node = null;
@@ -53,15 +47,9 @@ public class Trie {
         return node;
     }
 
-    public static void main(String[] args) {
-        Trie trie = new Trie();
-        trie.insert("abcd");
-        trie.insert("adgasd");
-        trie.insert("dassag");
-        System.out.println("abcd:     " + trie.contains("abcd"));
-        System.out.println("adgasd:   " + trie.contains("adgasd"));
-        System.out.println("new_word: " + trie.contains("new_word"));
-        trie.insert("new_word");
-        System.out.println("new_word: " + trie.contains("new_word"));
+    private static class Node {
+        char character;
+        boolean isLeaf;
+        HashMap<Character, Node> children = new HashMap<>();
     }
 }

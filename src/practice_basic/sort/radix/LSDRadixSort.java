@@ -1,10 +1,8 @@
 package practice_basic.sort.radix;
 
-import static java.lang.System.arraycopy;
-import static java.util.Arrays.fill;
-import static utility.ArrayUtils.createRandomArray;
+import utility.MathUtils;
+
 import static utility.ArrayUtils.findMax;
-import static utility.ArrayUtils.format;
 
 /**
  * Created by nickwph on 11/10/15.
@@ -13,49 +11,42 @@ import static utility.ArrayUtils.format;
  */
 public class LSDRadixSort {
 
-    public static void sort(int[] array) {
-        // counting sort for each digit bucket
-        // from right to left
-        // time: O(kn)
-        int max = findMax(array);
-        for (int exp = 1; max / exp > 0; exp *= 10) {
-            countingSortAtExp(array, exp);
+
+    // Sort the numbers beginning with least-significant digit
+    public static void sort(int[] input){
+        int max = findMax(input);
+        int count = MathUtils.getExponent(max);
+        // Largest place for a 32-bit int is the 1 billion's place
+        for(int place=1; place <= count; place *= 10){
+            // Use counting sort at each digit's place
+            countingSort(input, place);
         }
     }
 
-    // look at counting sort for more idea
-    // time: O(kn)
-    static void countingSortAtExp(int[] array, int exp) {
-        // time: O(n)
-        int k = 10;
-        int[] counter = new int[k];
-        fill(counter, 0);
+    private static void countingSort(int[] input, int place){
+        int[] out = new int[input.length];
 
-        // time: O(n)
-        for (int item : array) {
-            int key = (item / exp) % 10;
-            counter[key]++;
+        int[] count = new int[10];
+
+        for(int i=0; i < input.length; i++){
+            int digit = getDigit(input[i], place);
+            count[digit] += 1;
         }
 
-        // time: O(n)
-        for (int i = 1; i < k; i++) counter[i] += counter[i - 1];
-
-        // time: O(n)
-        int[] output = new int[array.length];
-        for (int item : array) {
-            int key = (item / exp) % 10;
-            counter[key]--;
-            output[counter[key]] = item;
+        for(int i=1; i < count.length; i++){
+            count[i] += count[i-1];
         }
 
-        // time: O(n)
-        arraycopy(output, 0, array, 0, output.length);
+        for(int i = input.length-1; i >= 0; i--){
+            int digit = getDigit(input[i], place);
+
+            out[--count[digit]] = input[i];
+        }
+        System.arraycopy(out, 0, input, 0, out.length);
+
     }
 
-    public static void main(String[] args) {
-        int[] array = createRandomArray(20, 10000);
-        System.out.println("Original: " + format(array));
-        sort(array);
-        System.out.println("Sorted:   " + format(array));
+    private static int getDigit(int value, int digitPlace){
+        return ((value/digitPlace ) % 10);
     }
 }

@@ -102,11 +102,23 @@ public class BinaryTree {
         System.out.println();
     }
 
-    void dump(Node node) {
+    private void dump(Node node) {
         if (node == null) return;
         dump(node.left);
         System.out.print(node.value + " ");
         dump(node.right);
+    }
+
+    void print() {
+        print(root, "", true);
+    }
+
+    private void print(Node node, String prefix, boolean isTail) {
+        System.out.println(prefix + (isTail ? "└── " : "├── ") + (node != null ? node.value : "null"));
+        if (node != null) {
+            print(node.right, prefix + (isTail ? "    " : "│   "), false);
+            print(node.left, prefix + (isTail ? "    " : "│   "), true);
+        }
     }
 
     public static void main(String[] args) {
@@ -124,6 +136,7 @@ public class BinaryTree {
         tree.insert(12);
         tree.insert(1235);
         tree.insert(312);
+        tree.print();
         tree.dump();
         System.out.println("contain 112? " + tree.contains(112));
         tree.delete(112);

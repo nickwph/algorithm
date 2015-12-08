@@ -38,4 +38,27 @@ public class MathUtils {
         // (4,1000) -> 0
         return (value / exp) % 10;
     }
+
+    /**
+     * https://en.wikipedia.org/wiki/Significant_figures#Significant_figures_rules_explained
+     * 91    -> 2
+     * 12345 -> 5
+     */
+    public static int getDigitCount(int value) {
+        int count;
+        for (count = 0; value > 0; count++) value /= 10;
+        return count;
+    }
+
+    /**
+     * 123,5,0 -> 0
+     * 123,5,1 -> 0
+     * 123,5,2 -> 1
+     * 123,5,3 -> 2
+     * 123,5,4 -> 3
+     */
+    public static int getDigitAt(int value, int max, int position) {
+        int figure = (int) pow(10, max - position - 1);
+        return (value / figure) % 10;
+    }
 }

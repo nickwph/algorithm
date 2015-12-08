@@ -2,8 +2,8 @@ package practice_basic.sort.radix;
 
 import static java.lang.System.arraycopy;
 import static java.util.Arrays.fill;
-import static utility.ArrayUtils.*;
-import static utility.MathUtils.getExponent;
+import static utility.ArrayUtils.findMax;
+import static utility.MathUtils.getNumberOfDigits;
 
 /**
  * Created by nickwph on 11/10/15.
@@ -17,7 +17,10 @@ public class MSDRadixSort {
         // find the most significant digit
         // [432521] -> exp=100000
         int max = findMax(array);
-        int exp = getExponent(max);
+        int exp = getNumberOfDigits(max);
+
+        System.out.println("Max:      " + max);
+        System.out.println("Exponent: " + exp);
 
         // sort recursively by each digit
         // from left to right
@@ -25,7 +28,7 @@ public class MSDRadixSort {
         sort(array, 0, array.length, exp);
     }
 
-    static void sort(int[] array, int lo, int hi, int exp) {
+    private static void sort(int[] array, int lo, int hi, int exp) {
         if (hi <= lo + 1 || exp < 1) return;
 
         // run counting sort at exponent in range lo and hi
@@ -41,7 +44,7 @@ public class MSDRadixSort {
     // look at counting sort for more idea
     // run counting sort at exp in range lo and hi
     // time: O(kn)
-    static int[] countingSortAtExpInRange(int[] array, int lo, int hi, int exp) {
+    private static int[] countingSortAtExpInRange(int[] array, int lo, int hi, int exp) {
 
         // time: O(n)
         int k = 10;
@@ -68,12 +71,5 @@ public class MSDRadixSort {
         // time: O(n)
         arraycopy(output, lo, array, lo, hi - lo);
         return counter;
-    }
-
-    public static void main(String[] args) {
-        int[] array = createRandomArray(20, 10000);
-        System.out.println("Original: " + format(array));
-        sort(array);
-        System.out.println("Sorted:   " + format(array));
     }
 }
