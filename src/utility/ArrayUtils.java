@@ -50,7 +50,7 @@ public class ArrayUtils {
     }
 
     public static String format(int[] array, int lo, int hi) {
-        int length = hi - lo + 1;
+        int length = hi - lo;
         if (length > 0) {
             int[] newArray = new int[length];
             System.arraycopy(array, lo, newArray, 0, length);
